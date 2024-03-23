@@ -55,8 +55,9 @@ export const signin = async (req, res, next) => {
     const {password: pass, ...rest} = validUser._doc
     res
       .status(200)
-      .cookie("access_token", token, { httpOnly: true })
-      .json(rest);
+      .json(rest, 'token', token)
+      // .send(rest, 'token', token )
+      // res.status(201).send({ msg: "Login Successfull", token: token });
   } catch (error) {
     next(error);
   }
